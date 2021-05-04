@@ -1,7 +1,7 @@
 /* tslint:disable:file-name-casing */
 export * from './ngx-jsonapi.module';
 /* tslint:enable:file-name-casing */
-export * from './interfaces';
+export * from 'interfaces';
 export { Autoregister } from './decorators/autoregister';
 export { Core as JsonapiCore } from './core';
 export { Resource } from './resource';

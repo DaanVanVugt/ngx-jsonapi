@@ -234,7 +234,7 @@ export async function minifyUmdBundles(config: Config) {
             file,
             ...uglifyArgs,
             `-o ${out}`,
-            `--source-map "filename='${out}.map' includeSources='${file}', content='${file}.map'"`
+            `--source-map "filename='${out}.map',includeSources='${file}'"`
         ]);
     });
 }

@@ -1,7 +1,6 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
-import { CommonModule } from '@angular/common';
 // import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
 
 import { Core as JsonapiCore } from './core';
 import { Http as JsonapiHttp } from './sources/http.service';
@@ -11,10 +10,9 @@ import { StoreService as JsonapiStore } from './sources/store.service';
 import { JsonapiConfig } from './jsonapi-config';
 
 @NgModule({
-    imports: [CommonModule],
+    imports: [],
     exports: [
         // BrowserModule,  // needed by HttpClientModule?
-        HttpClientModule
     ],
     providers: [
         JsonapiCore,
@@ -35,7 +33,7 @@ export class NgxJsonapiModule {
         }
     }
 
-    public static forRoot(config: JsonapiConfig): ModuleWithProviders {
+    public static forRoot(config: JsonapiConfig): ModuleWithProviders<NgxJsonapiModule> {
         return {
             ngModule: NgxJsonapiModule,
             providers: [{ provide: JsonapiConfig, useValue: config }]
