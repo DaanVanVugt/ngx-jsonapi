@@ -19,9 +19,15 @@ export async function compilePackagesWithNgc(config: Config) {
     const restPkgs = pkgs.filter(name => name !== storePkg);
     const testPkgs = util.getTestingPackages(config);
 
+    await _runNgcc();
     await _compilePackagesWithNgc(storePkg);
     await mapAsync(restPkgs, _compilePackagesWithNgc);
     await mapAsync(testPkgs, _compilePackagesWithNgc);
+}
+
+async function _runNgcc() {
+    // await util.exec('ngc', [`-p ./src/${pkg}/tsconfig-build.json`]);
+    await util.exec('ngcc', []);
 }
 
 async function _compilePackagesWithNgc(pkg: string) {
