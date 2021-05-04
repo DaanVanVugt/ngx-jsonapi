@@ -27,6 +27,7 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": false,
     "flatModuleOutFile": "index.js",
-    "flatModuleId": "ngx-jsonapi"
+    "flatModuleId": "ngx-jsonapi",
+    "enableIvy": false
   }
 }
