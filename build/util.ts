@@ -20,7 +20,7 @@ export function copy(target: string, destination: string): Promise<void> {
 }
 
 export function remove(target: string): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
         fsExtra.remove(target, err => {
             if (err) return reject(err);
             resolve();
@@ -29,7 +29,7 @@ export function remove(target: string): Promise<void> {
 }
 
 export function writeFile(target: string, contents: string) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
         fs.writeFile(target, contents, err => {
             if (err) return reject(err);
             resolve();
@@ -40,7 +40,7 @@ export function writeFile(target: string, contents: string) {
 export function getListOfFiles(
     globPath: string,
     exclude?: string
-): Promise<string[]> {
+): Promise<Array<string>> {
     return new Promise((resolve, reject) => {
         const options = exclude ? { ignore: exclude } : {};
 
@@ -55,7 +55,7 @@ export function getListOfFiles(
 }
 
 export function removeRecursively(glob: string) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
         rimraf(glob, err => {
             if (err) {
                 reject(err);
@@ -68,7 +68,7 @@ export function removeRecursively(glob: string) {
 
 export function exec(
     command: string,
-    args: string[],
+    args: Array<string>,
     base: BaseFn = fromNpm
 ): Promise<string> {
     return new Promise((resolve, reject) => {
@@ -82,11 +82,11 @@ export function exec(
     });
 }
 
-export function cmd(command: string, args: string[]): Promise<string> {
+export function cmd(command: string, args: Array<string>): Promise<string> {
     return exec(command, args, (command: string) => command);
 }
 
-export function git(args: string[]): Promise<string> {
+export function git(args: Array<string>): Promise<string> {
     return cmd('git', args);
 }
 
@@ -125,7 +125,7 @@ async function runTask(name: string, taskFn: () => Promise<any>) {
     }
 }
 
-export function createBuilder(tasks: TaskDef[]) {
+export function createBuilder(tasks: Array<TaskDef>) {
     return async function(config: Config) {
         for (let [name, runner] of tasks) {
             await runTask(name, () => runner(config));
@@ -133,12 +133,12 @@ export function createBuilder(tasks: TaskDef[]) {
     };
 }
 
-export function flatMap<K, J>(list: K[], mapFn: (item: K) => J[]): J[] {
+export function flatMap<K, J>(list: Array<K>, mapFn: (item: K) => Array<J>): Array<J> {
     return list.reduce(
         function(newList, nextItem) {
             return [...newList, ...mapFn(nextItem)];
         },
-        [] as J[]
+        [] as Array<J>
     );
 }
 
@@ -178,7 +178,7 @@ export function getBottomLevelName(packageName: string) {
     return packageName.includes('/testing') ? 'testing' : packageName;
 }
 
-export function baseDir(...dirs: string[]): string {
+export function baseDir(...dirs: Array<string>): string {
     return `"${path.resolve(__dirname, '../', ...dirs)}"`;
 }
 
