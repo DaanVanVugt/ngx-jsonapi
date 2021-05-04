@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
 // import { BrowserModule } from '@angular/platform-browser';
-// import { HttpClientModule } from '@angular/common/http';
+//import { HttpClientModule } from '@angular/common/http';
 
 import { Core as JsonapiCore } from './core';
 import { Http as JsonapiHttp } from './sources/http.service';
@@ -13,6 +13,7 @@ import { JsonapiConfig } from './jsonapi-config';
     imports: [],
     exports: [
         // BrowserModule,  // needed by HttpClientModule?
+        //HttpClientModule,
     ],
     providers: [
         JsonapiCore,

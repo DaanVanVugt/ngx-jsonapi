@@ -1,6 +1,6 @@
 {
     "name": "ngx-jsonapi",
-    "version": "2.1.15",
+    "version": "2.1.16",
     "description": "JSON API library for Angular",
     "module": "ngx-jsonapi/@ngx-jsonapi/ngx-jsonapi.es5.js",
     "es2015": "ngx-jsonapi/@ngx-jsonapi/ngx-jsonapi.js",
@@ -26,6 +26,6 @@
         "dexie": "^2.0.4"
     },
     "peerDependencies": {
-        "@angular/core": "^6.0.0"
+        "@angular/core": "^11.2.12"
     }
 }
